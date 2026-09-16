@@ -4,6 +4,7 @@ import time
 from playwright.sync_api import Page
 import pytest
 from pageObjects.login import LoginPage 
+from constants.constants import COURSE_FILTER_CHOICE_FIRST
 
 with open("data/credentials.json") as f:
     test_data = json.load(f)
@@ -14,8 +15,7 @@ def test_main(browserInstance,user_credentials):
     login_page = LoginPage(browserInstance,user_credentials)
     login_page.navigate()
     all_courses = login_page.login()
-    choice = "Playwright"
-    all_courses.get_all_courses(choice)
+    all_courses.get_all_courses(COURSE_FILTER_CHOICE_FIRST)
     instructors = all_courses.select_course()
     certificate = instructors.get_instructors()
     logut = certificate.show_certificate()

@@ -1,6 +1,6 @@
-from pageObjects.allCourses import AllCourses
+from pageObjects.all_courses import AllCourses
 from playwright.sync_api import Page
-
+from constants.constants import BASE_URL
 
 class LoginPage:
 
@@ -10,7 +10,7 @@ class LoginPage:
 
     def navigate(self):
         self.page.goto(
-            "https://testautomationu.applitools.com/"
+            BASE_URL
         )
 
     def open_login(self):
