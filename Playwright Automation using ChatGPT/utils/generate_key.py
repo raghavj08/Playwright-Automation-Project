@@ -5,3 +5,5 @@ key = Fernet.generate_key()
 
 with open("secret.key", "wb") as file:
     file.write(key)
+    
+print("Secret key generated successfully")

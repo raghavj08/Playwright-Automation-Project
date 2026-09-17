@@ -1,6 +1,7 @@
 from pageObjects.all_courses import AllCourses
 from playwright.sync_api import Page
 from constants.constants import BASE_URL
+from utils.decrypt import decrypt_password
 
 class LoginPage:
 
@@ -29,9 +30,13 @@ class LoginPage:
         ).click()
 
     def enter_password(self):
+        encrypted_password = self.user_credentials["password"]
+
+        password = decrypt_password(encrypted_password)
+
         self.page.locator(
             'input[name="password"]'
-        ).fill(self.user_credentials["password"])
+        ).fill(password)
 
     def click_sign_in(self):
         self.page.get_by_role(
